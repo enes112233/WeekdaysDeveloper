@@ -1,6 +1,13 @@
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
   
+  // check if switch is ON or OFF.
+  TriggerSwitch__c accountSwitch = TriggerSwitch__c.getInstance('account');
+  Boolean accSwitch = accountSwitch.switch__c; //checkbox field
+  if(accSwitch == false){
+    return;
+  }
   
+
     system.debug('---start---');
      if (Trigger.isBefore) {
         
